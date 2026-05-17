@@ -43,10 +43,21 @@
         <view class="card-row card-row-h">
           <view class="voice-label-group">
             <text class="card-label">语音倒计时</text>
-            <text class="voice-sub">最后 10 秒播报</text>
+            <text class="voice-sub">最后 {{voiceCountdown}}s 逐秒播报</text>
           </view>
           <switch checked="{{voiceOn}}" bindchange="toggleVoice" color="#F97066" style="transform:scale(0.85)"/>
         </view>
+        <block wx:if="{{voiceOn}}">
+          <view class="card-divider"></view>
+          <view class="card-row">
+            <text class="card-label">播报时长</text>
+            <view class="chips">
+              <view wx:for="{{voiceOptions}}" wx:key="value"
+                class="chip {{voiceCountdown === item.value ? 'chip-on' : ''}}"
+                bindtap="pickVoiceCountdown" data-v="{{item.value}}">{{item.label}}</view>
+            </view>
+          </view>
+        </block>
       </view>
 
       <!-- 开始按钮紧跟设置卡片 -->

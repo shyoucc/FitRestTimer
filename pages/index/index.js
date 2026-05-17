@@ -1,5 +1,13 @@
 const app = getApp();
 
+const VOICE_OPTS = [
+  { label: '5s',  value: 5 },
+  { label: '10s', value: 10 },
+  { label: '15s', value: 15 },
+  { label: '20s', value: 20 },
+  { label: '30s', value: 30 },
+];
+
 const REST_OPTS = [
   { label: '30s', value: 30 },
   { label: '45s', value: 45 },
@@ -25,6 +33,8 @@ Page({
     warning: false,          // ≤10s 时变色提醒
     // 语音开关
     voiceOn: false,
+    voiceCountdown: 10,
+    voiceOptions: VOICE_OPTS,
     // 本组计时（正计时）
     setElapsed: 0,
     setDisplay: '00:00',
@@ -54,8 +64,11 @@ Page({
   toggleVoice() {
     const next = !this.data.voiceOn;
     this.setData({ voiceOn: next });
-    // 播一段示例音，告知用户当前状态
     if (next) this._speak('go');
+  },
+
+  pickVoiceCountdown(e) {
+    this.setData({ voiceCountdown: e.currentTarget.dataset.v });
   },
 
   onReady() {
@@ -206,7 +219,8 @@ Page({
         this._enterWorking();
         return;
       }
-      const warn = rem <= 10;
+      const threshold = this.data.voiceCountdown;
+      const warn = rem <= threshold;
       this.setData({
         restRemaining: rem,
         restDisplay: this._fmt(rem),
@@ -214,8 +228,8 @@ Page({
         warning: warn,
       });
       this._drawRing(rem / total, 'resting', warn);
-      // 最后 10 秒逐秒播报
-      if (this.data.voiceOn && rem <= 10) this._speak(rem);
+      // 最后 N 秒逐秒播报
+      if (this.data.voiceOn && rem <= threshold) this._speak(rem);
       this._restTimer = setTimeout(tick, 1000);
     };
 
@@ -311,6 +325,8 @@ Page({
 
   _speak(n) {
     if (!this._audio) return;
+    // 音频只有 1-10，超出范围不播
+    if (n !== 'go' && (n < 1 || n > 10)) return;
     this._audio.stop();
     this._audio.src = `/audio/${n}.mp3`;
     this._audio.play();
