@@ -270,7 +270,7 @@ Page({
 
     ctx.clearRect(0, 0, size, size);
 
-    // 轨道（浅色背景）
+    // 背景轨道
     ctx.beginPath();
     ctx.arc(c, c, r, 0, Math.PI * 2);
     ctx.setStrokeStyle('#EEF0F5');
@@ -279,9 +279,12 @@ Page({
 
     if (progress > 0.005) {
       let color;
-      if (status === 'paused') color = '#DDE1EC';
-      else if (warning)        color = '#F59E0B';
-      else                     color = '#F97066';
+      if (status === 'paused') {
+        color = '#DDE1EC';
+      } else {
+        // 绿(1.0) → 橙(0.5) → 红(0.0) 线性插值
+        color = this._progressColor(progress);
+      }
 
       const a0 = -Math.PI / 2;
       const a1 = a0 + progress * Math.PI * 2;
@@ -305,6 +308,27 @@ Page({
     ctx.draw();
   },
 
+  // 绿(progress=1) → 橙(0.5) → 红(0)
+  _progressColor(p) {
+    const lerp = (a, b, t) => Math.round(a + (b - a) * t);
+    // green: #10B981 = [16,185,129]
+    // amber: #F59E0B = [245,158,11]
+    // red:   #F97066 = [249,112,102]
+    let r, g, b;
+    if (p >= 0.5) {
+      const t = (1 - p) / 0.5;   // 0→1 as progress goes 1.0→0.5
+      r = lerp(16,  245, t);
+      g = lerp(185, 158, t);
+      b = lerp(129,  11, t);
+    } else {
+      const t = (0.5 - p) / 0.5; // 0→1 as progress goes 0.5→0
+      r = lerp(245, 249, t);
+      g = lerp(158, 112, t);
+      b = lerp(11,  102, t);
+    }
+    return `rgb(${r},${g},${b})`;
+  },
+
   // ── 工具 ─────────────────────────────────────────────────
 
   _rebuildDots() {
@@ -325,8 +349,8 @@ Page({
 
   _speak(n) {
     if (!this._audio) return;
-    // 音频只有 1-10，超出范围不播
-    if (n !== 'go' && (n < 1 || n > 10)) return;
+    // 音频支持 1-30 及 go
+    if (n !== 'go' && (n < 1 || n > 30)) return;
     this._audio.stop();
     this._audio.src = `/audio/${n}.mp3`;
     this._audio.play();
