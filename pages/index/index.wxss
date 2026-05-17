@@ -1,0 +1,454 @@
+/* ══ 基础 ════════════════════════════════════════════════ */
+page { background: #F5F6FA; }
+
+.page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #F5F6FA;
+  box-sizing: border-box;
+  padding: 0 40rpx calc(env(safe-area-inset-bottom) + 24rpx);
+}
+
+/* ══ 顶部导航栏 ══════════════════════════════════════════ */
+.bar {
+  flex-shrink: 0;
+  height: 96rpx;
+  display: flex;
+  align-items: center;
+}
+
+.bar-title {
+  flex: 1;
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 1rpx;
+}
+
+.spacer { flex: 1; }
+
+.dots {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 16rpx; height: 16rpx;
+  border-radius: 50%;
+  background: #DDE1EC;
+}
+.dot-done  { background: #10B981; }
+.dot-work  { background: #10B981; box-shadow: 0 0 0 4rpx rgba(16,185,129,.18); }
+.dot-rest  { background: #F97066; box-shadow: 0 0 0 4rpx rgba(249,112,102,.18); }
+.dot-pause { background: #CBD5E1; }
+
+.icon-btn {
+  width: 64rpx; height: 64rpx;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.04);
+}
+.icon-hist {
+  font-size: 30rpx;
+  color: #9CA3AF;
+  letter-spacing: -2rpx;
+}
+
+/* ══ 空闲：中心区 ════════════════════════════════════════ */
+.idle-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24rpx;
+  min-height: 0;
+  padding-bottom: calc(env(safe-area-inset-bottom) + 16rpx);
+}
+
+.btn-start {
+  width: 100%;
+  box-sizing: border-box;
+  height: 96rpx !important;
+  font-size: 30rpx !important;
+  border-radius: 24rpx !important;
+  box-shadow: 0 6rpx 16rpx rgba(249,112,102,0.28) !important;
+}
+
+/* 大字预览 */
+.preview-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.preview-time {
+  font-size: 80rpx;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+  letter-spacing: -2rpx;
+  font-variant-numeric: tabular-nums;
+}
+
+.preview-label {
+  font-size: 22rpx;
+  color: #9CA3AF;
+  letter-spacing: 2rpx;
+}
+
+/* 设置卡片 */
+.card {
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.card-row {
+  padding: 20rpx 28rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 14rpx;
+}
+
+.card-row-h {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card-divider {
+  height: 1rpx;
+  background: #F3F4F6;
+  margin: 0 28rpx;
+}
+
+.card-label {
+  font-size: 22rpx;
+  color: #9CA3AF;
+  letter-spacing: 1rpx;
+  font-weight: 500;
+}
+
+/* 时长选择 chips */
+.chips-scroll { overflow: hidden; }
+.chips { display: inline-flex; gap: 12rpx; }
+
+.chip {
+  padding: 10rpx 24rpx;
+  border-radius: 40rpx;
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #9CA3AF;
+  background: #F3F4F6;
+  white-space: nowrap;
+}
+.chip-on {
+  background: #FEE2E2;
+  color: #F97066;
+  font-weight: 600;
+}
+
+/* 组数步进器 */
+.stepper { display: flex; align-items: center; gap: 24rpx; }
+
+.step-btn {
+  width: 64rpx; height: 64rpx;
+  border-radius: 50%;
+  background: #F3F4F6;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36rpx;
+  color: #6B7280;
+}
+.step-btn:active { background: #E5E7EB; }
+
+.step-val {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #111827;
+  min-width: 56rpx;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ══ 训练中 ══════════════════════════════════════════════ */
+.work-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  min-height: 0;
+}
+
+.set-index {
+  font-size: 52rpx;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 2rpx;
+}
+
+.set-total {
+  font-size: 26rpx;
+  color: #9CA3AF;
+  margin-top: 8rpx;
+}
+
+.elapsed-row {
+  display: flex;
+  align-items: baseline;
+  gap: 12rpx;
+  margin-top: 48rpx;
+  padding: 24rpx 48rpx;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+}
+
+.elapsed-num {
+  font-size: 64rpx;
+  font-weight: 700;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2rpx;
+}
+
+.elapsed-unit {
+  font-size: 24rpx;
+  color: #9CA3AF;
+}
+
+.work-hint {
+  font-size: 22rpx;
+  color: #C4C9D4;
+  margin-top: 32rpx;
+}
+
+/* ══ 休息 / 暂停：圆环 ══════════════════════════════════ */
+.ring-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28rpx;
+  min-height: 0;
+}
+
+.ring-wrap {
+  position: relative;
+  width: 500rpx;
+  height: 500rpx;
+  flex-shrink: 0;
+}
+
+.ring-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ring-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14rpx;
+}
+
+.ring-time {
+  font-size: 100rpx;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 1rpx;
+}
+.ring-warn   { color: #F59E0B; }
+.ring-paused { color: #C4C9D4; }
+
+.ring-label {
+  font-size: 22rpx;
+  color: #9CA3AF;
+  letter-spacing: 3rpx;
+}
+
+.ring-note {
+  font-size: 24rpx;
+  color: #9CA3AF;
+}
+
+/* ══ 完成界面 ════════════════════════════════════════════ */
+.done-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  min-height: 0;
+}
+
+.done-badge {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #D1FAE5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48rpx;
+  color: #10B981;
+  margin-bottom: 8rpx;
+}
+
+.done-title {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: 2rpx;
+}
+
+.done-sub {
+  font-size: 26rpx;
+  color: #9CA3AF;
+}
+
+.done-card {
+  display: flex;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: 20rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  padding: 32rpx 0;
+  width: 100%;
+  margin-top: 16rpx;
+}
+
+.done-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.ds-val {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #111827;
+  font-variant-numeric: tabular-nums;
+}
+
+.ds-key {
+  font-size: 20rpx;
+  color: #9CA3AF;
+}
+
+.done-sep {
+  width: 1rpx;
+  height: 48rpx;
+  background: #F3F4F6;
+}
+
+/* ══ 底部按钮区 ══════════════════════════════════════════ */
+.footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+  padding-top: 20rpx;
+}
+
+.btn-row {
+  display: flex;
+  gap: 16rpx;
+  width: 100%;
+}
+
+/* 主按钮（全宽场景：完成本组、继续等） */
+.btn-primary {
+  flex: 1;
+  height: 104rpx;
+  border-radius: 26rpx;
+  background: #F97066;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 2rpx;
+  box-shadow: 0 6rpx 18rpx rgba(249,112,102,0.28);
+}
+.btn-primary:active { opacity: 0.88; transform: scale(0.985); }
+
+.btn-green {
+  background: #10B981;
+  box-shadow: 0 6rpx 18rpx rgba(16,185,129,0.24);
+}
+
+.btn-full { width: 100%; flex: none; }
+
+/* 开始训练：居中、自适应宽度 */
+.btn-start {
+  flex: none;
+  width: auto;
+  height: 92rpx !important;
+  padding: 0 72rpx;
+  border-radius: 46rpx !important;
+  font-size: 30rpx !important;
+  font-weight: 700;
+  box-shadow: 0 6rpx 18rpx rgba(249,112,102,0.28) !important;
+  align-self: center;
+}
+
+/* 次按钮 - 浅底彩色字 */
+.btn-secondary {
+  flex: 1;
+  height: 104rpx;
+  border-radius: 26rpx;
+  background: #FEE2E2;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #F97066;
+}
+.btn-secondary:active { opacity: 0.8; }
+
+/* 描边按钮 */
+.btn-outline {
+  flex: 1;
+  height: 104rpx;
+  border-radius: 26rpx;
+  background: #FFFFFF;
+  border: 1.5rpx solid #E5E7EB;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #6B7280;
+  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.04);
+}
+.btn-outline:active { background: #F9FAFB; }
+
+.btn-outline-red {
+  color: #F87171;
+  border-color: #FECACA;
+}
+
+/* 纯文字按钮 */
+.btn-text {
+  height: 72rpx;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24rpx;
+  color: #C4C9D4;
+}

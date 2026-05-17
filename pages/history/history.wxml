@@ -1,0 +1,73 @@
+<view class="page">
+
+  <!-- 总览卡片 -->
+  <view class="summary-card" wx:if="{{history.length > 0}}">
+    <view class="summary-item">
+      <text class="summary-num">{{totalWorkouts}}</text>
+      <text class="summary-desc">训练次数</text>
+    </view>
+    <view class="summary-divider"></view>
+    <view class="summary-item">
+      <text class="summary-num">{{totalSetsAll}}</text>
+      <text class="summary-desc">累计组数</text>
+    </view>
+    <view class="summary-divider"></view>
+    <view class="summary-item">
+      <text class="summary-num">{{totalMinutes}}</text>
+      <text class="summary-desc">累计分钟</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty" wx:if="{{history.length === 0}}">
+    <text class="empty-icon">🏋️</text>
+    <text class="empty-text">暂无训练记录</text>
+    <text class="empty-sub">完成第一次训练后会在这里显示</text>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="section-title" wx:if="{{history.length > 0}}">训练记录</view>
+  <view class="record-list">
+    <view class="record-card" wx:for="{{history}}" wx:key="index">
+      <view class="record-header">
+        <view>
+          <text class="record-date">{{item.date}}</text>
+          <text class="record-time">{{item.time}}</text>
+        </view>
+        <view class="record-badge {{item.completedSets >= item.totalSets ? 'badge-complete' : 'badge-partial'}}">
+          <text>{{item.completedSets >= item.totalSets ? '完成' : '中途结束'}}</text>
+        </view>
+      </view>
+
+      <view class="record-stats">
+        <view class="r-stat">
+          <text class="r-stat-num">{{item.completedSets}}/{{item.totalSets}}</text>
+          <text class="r-stat-label">完成组数</text>
+        </view>
+        <view class="r-stat">
+          <text class="r-stat-num">{{item.workDuration || '--'}}s</text>
+          <text class="r-stat-label">每组时长</text>
+        </view>
+        <view class="r-stat">
+          <text class="r-stat-num">{{item.restDuration}}s</text>
+          <text class="r-stat-label">组间休息</text>
+        </view>
+        <view class="r-stat">
+          <text class="r-stat-num">{{item.durationDisplay}}</text>
+          <text class="r-stat-label">总用时</text>
+        </view>
+      </view>
+
+      <!-- 进度条 -->
+      <view class="progress-bar-bg">
+        <view class="progress-bar-fill" style="width: {{item.progressPct}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 清空按钮 -->
+  <view class="clear-btn" bindtap="clearHistory" wx:if="{{history.length > 0}}">
+    <text>清空记录</text>
+  </view>
+
+</view>

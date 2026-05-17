@@ -1,0 +1,182 @@
+<view class="page">
+
+  <!-- ══ 空闲 ══ -->
+  <block wx:if="{{status === 'idle'}}">
+
+    <view class="bar">
+      <text class="bar-title">组间计时</text>
+      <view class="icon-btn" bindtap="goHistory">
+        <text class="icon-hist">⋯</text>
+      </view>
+    </view>
+
+    <view class="idle-center">
+
+      <!-- 休息时长大字预览 -->
+      <view class="preview-block">
+        <text class="preview-time">{{restDuration >= 60 ? (restDuration/60 + ':00') : ('0:' + (restDuration < 10 ? '0' : '') + restDuration)}}</text>
+        <text class="preview-label">休息时长</text>
+      </view>
+
+      <!-- 设置卡片 -->
+      <view class="card">
+        <view class="card-row">
+          <text class="card-label">休息时长</text>
+          <scroll-view scroll-x class="chips-scroll">
+            <view class="chips">
+              <view wx:for="{{restOptions}}" wx:key="value"
+                class="chip {{restDuration === item.value ? 'chip-on' : ''}}"
+                bindtap="pickRest" data-v="{{item.value}}">{{item.label}}</view>
+            </view>
+          </scroll-view>
+        </view>
+        <view class="card-divider"></view>
+        <view class="card-row card-row-h">
+          <text class="card-label">训练组数</text>
+          <view class="stepper">
+            <view class="step-btn" bindtap="subSet"><text>−</text></view>
+            <text class="step-val">{{totalSets}}</text>
+            <view class="step-btn" bindtap="addSet"><text>+</text></view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 开始按钮紧跟设置卡片 -->
+      <view class="btn-primary btn-start" bindtap="start">开始训练</view>
+
+    </view>
+
+  </block>
+
+  <!-- ══ 训练中 ══ -->
+  <block wx:elif="{{status === 'working'}}">
+
+    <view class="bar">
+      <view class="dots">
+        <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
+      </view>
+      <view class="icon-btn" bindtap="goHistory">
+        <text class="icon-hist">⋯</text>
+      </view>
+    </view>
+
+    <view class="work-center">
+      <text class="set-index">第 {{currentSet}} 组</text>
+      <text class="set-total">共 {{totalSets}} 组</text>
+      <view class="elapsed-row">
+        <text class="elapsed-num">{{setDisplay}}</text>
+        <text class="elapsed-unit">本组用时</text>
+      </view>
+      <text class="work-hint">完成后休息 {{restDuration >= 60 ? restDuration/60 + ' 分钟' : restDuration + ' 秒'}}</text>
+    </view>
+
+    <view class="footer">
+      <view class="btn-primary btn-green btn-full" bindtap="finishSet">完成本组</view>
+      <view class="btn-text" bindtap="end">结束本次训练</view>
+    </view>
+
+  </block>
+
+  <!-- ══ 休息中 ══ -->
+  <block wx:elif="{{status === 'resting'}}">
+
+    <view class="bar">
+      <view class="dots">
+        <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
+      </view>
+      <view class="icon-btn" bindtap="goHistory">
+        <text class="icon-hist">⋯</text>
+      </view>
+    </view>
+
+    <view class="ring-center">
+      <view class="ring-wrap">
+        <canvas canvas-id="ring" class="ring-canvas"></canvas>
+        <view class="ring-inner">
+          <text class="ring-time {{warning ? 'ring-warn' : ''}}">{{restDisplay}}</text>
+          <text class="ring-label">{{warning ? '即将结束' : '休息中'}}</text>
+        </view>
+      </view>
+      <text class="ring-note">第 {{currentSet}} 组准备中</text>
+    </view>
+
+    <view class="footer">
+      <view class="btn-row">
+        <view class="btn-outline" bindtap="pause">暂停</view>
+        <view class="btn-secondary" bindtap="skipRest">跳过休息</view>
+      </view>
+    </view>
+
+  </block>
+
+  <!-- ══ 已暂停 ══ -->
+  <block wx:elif="{{status === 'paused'}}">
+
+    <view class="bar">
+      <view class="dots">
+        <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
+      </view>
+      <view class="icon-btn" bindtap="goHistory">
+        <text class="icon-hist">⋯</text>
+      </view>
+    </view>
+
+    <view class="ring-center">
+      <view class="ring-wrap">
+        <canvas canvas-id="ring" class="ring-canvas"></canvas>
+        <view class="ring-inner">
+          <text class="ring-time ring-paused">{{restDisplay}}</text>
+          <text class="ring-label">已暂停</text>
+        </view>
+      </view>
+      <text class="ring-note">第 {{currentSet}} 组准备中</text>
+    </view>
+
+    <view class="footer">
+      <view class="btn-row">
+        <view class="btn-outline btn-outline-red" bindtap="end">结束训练</view>
+        <view class="btn-primary" bindtap="resume">继续休息</view>
+      </view>
+    </view>
+
+  </block>
+
+  <!-- ══ 全部完成 ══ -->
+  <block wx:elif="{{status === 'done'}}">
+
+    <view class="bar">
+      <view class="spacer"></view>
+      <view class="icon-btn" bindtap="goHistory">
+        <text class="icon-hist">⋯</text>
+      </view>
+    </view>
+
+    <view class="done-center">
+      <view class="done-badge">✓</view>
+      <text class="done-title">训练完成</text>
+      <text class="done-sub">{{completedSets}} 组 · 共用时 {{totalDisplay}}</text>
+      <view class="done-card">
+        <view class="done-stat">
+          <text class="ds-val">{{completedSets}}</text>
+          <text class="ds-key">完成组数</text>
+        </view>
+        <view class="done-sep"></view>
+        <view class="done-stat">
+          <text class="ds-val">{{restDuration}}s</text>
+          <text class="ds-key">组间休息</text>
+        </view>
+        <view class="done-sep"></view>
+        <view class="done-stat">
+          <text class="ds-val">{{totalDisplay}}</text>
+          <text class="ds-key">总用时</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="footer">
+      <view class="btn-primary btn-start" bindtap="again">再来一次</view>
+    </view>
+
+  </block>
+
+</view>
