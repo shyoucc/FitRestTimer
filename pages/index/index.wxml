@@ -109,7 +109,7 @@
       <view class="ring-wrap">
         <canvas canvas-id="ring" class="ring-canvas"></canvas>
         <view class="ring-inner">
-          <text class="ring-time {{warning ? 'ring-warn' : ''}}">{{restDisplay}}</text>
+          <text class="ring-time" style="color:{{ringColor}}">{{restDisplay}}</text>
           <text class="ring-label">{{warning ? '即将结束' : '休息中'}}</text>
         </view>
       </view>
@@ -138,7 +138,7 @@
       <view class="ring-wrap">
         <canvas canvas-id="ring" class="ring-canvas"></canvas>
         <view class="ring-inner">
-          <text class="ring-time ring-paused">{{restDisplay}}</text>
+          <text class="ring-time" style="color:#C4C9D4">{{restDisplay}}</text>
           <text class="ring-label">已暂停</text>
         </view>
       </view>

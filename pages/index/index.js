@@ -30,7 +30,8 @@ Page({
     restRemaining: 60,
     restDisplay: '01:00',
     restProgress: 1,
-    warning: false,          // ≤10s 时变色提醒
+    warning: false,          // ≤voiceCountdown 时变色提醒
+    ringColor: '#10B981',    // 圆环+数字同步颜色
     // 语音开关
     voiceOn: false,
     voiceCountdown: 10,
@@ -137,6 +138,7 @@ Page({
       restDisplay: this._fmt(restDuration),
       restProgress: 1,
       warning: false,
+      ringColor: this._progressColor(1),
     });
     this._rebuildDots();
     this._startRestTimer();
@@ -221,13 +223,15 @@ Page({
       }
       const threshold = this.data.voiceCountdown;
       const warn = rem <= threshold;
+      const prog = rem / total;
       this.setData({
         restRemaining: rem,
         restDisplay: this._fmt(rem),
-        restProgress: rem / total,
+        restProgress: prog,
         warning: warn,
+        ringColor: this._progressColor(prog),
       });
-      this._drawRing(rem / total, 'resting', warn);
+      this._drawRing(prog, 'resting', warn);
       // 最后 N 秒逐秒播报
       if (this.data.voiceOn && rem <= threshold) this._speak(rem);
       this._restTimer = setTimeout(tick, 1000);
