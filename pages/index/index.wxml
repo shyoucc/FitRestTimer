@@ -15,25 +15,34 @@
 
     <view class="idle-center">
 
-      <!-- 休息时长大字预览 -->
+      <!-- 休息时长大字 -->
       <view class="preview-block">
-        <text class="preview-time">{{restDuration >= 60 ? (restDuration/60 + ':00') : ('0:' + (restDuration < 10 ? '0' : '') + restDuration)}}</text>
-        <text class="preview-label">休息时长</text>
+        <text class="preview-time">{{restLabel}}</text>
+        <text class="preview-label">组间休息</text>
       </view>
 
       <!-- 设置卡片 -->
       <view class="card">
+
+        <!-- 休息时长滑块 -->
         <view class="card-row">
-          <text class="card-label">休息时长</text>
-          <scroll-view scroll-x class="chips-scroll">
-            <view class="chips">
-              <view wx:for="{{restOptions}}" wx:key="value"
-                class="chip {{restDuration === item.value ? 'chip-on' : ''}}"
-                bindtap="pickRest" data-v="{{item.value}}">{{item.label}}</view>
+          <view class="slider-hd">
+            <text class="card-label">休息时长</text>
+            <view class="slider-marks">
+              <text class="slider-mark">30秒</text>
+              <text class="slider-mark">5分钟</text>
             </view>
-          </scroll-view>
+          </view>
+          <slider min="30" max="300" step="15" value="{{restDuration}}"
+            activeColor="#FF4757" backgroundColor="#21262D" block-color="#FF4757"
+            block-size="22"
+            bindchanging="onRestSlider" bindchange="onRestSlider"
+            class="rest-slider"/>
         </view>
+
         <view class="card-divider"></view>
+
+        <!-- 训练组数 -->
         <view class="card-row card-row-h">
           <text class="card-label">训练组数</text>
           <view class="stepper">
@@ -42,7 +51,10 @@
             <view class="step-btn" bindtap="addSet"><text>+</text></view>
           </view>
         </view>
+
         <view class="card-divider"></view>
+
+        <!-- 语音开关 -->
         <view class="card-row card-row-h">
           <view class="voice-label-group">
             <text class="card-label">语音倒计时</text>
@@ -50,6 +62,7 @@
           </view>
           <switch checked="{{voiceOn}}" bindchange="toggleVoice" color="#FF4757" style="transform:scale(0.85)"/>
         </view>
+
         <block wx:if="{{voiceOn}}">
           <view class="card-divider"></view>
           <view class="card-row">
@@ -61,6 +74,7 @@
             </view>
           </view>
         </block>
+
       </view>
 
       <!-- 开始按钮 -->
@@ -86,7 +100,7 @@
         <text class="elapsed-num">{{setDisplay}}</text>
         <text class="elapsed-unit">本组用时</text>
       </view>
-      <text class="work-hint">完成后休息 {{restDuration >= 60 ? restDuration/60 + ' 分钟' : restDuration + ' 秒'}}</text>
+      <text class="work-hint">完成后休息 {{restLabel}}</text>
     </view>
 
     <view class="footer">
@@ -173,7 +187,7 @@
         </view>
         <view class="done-sep"></view>
         <view class="done-stat">
-          <text class="ds-val">{{restDuration}}s</text>
+          <text class="ds-val">{{restLabel}}</text>
           <text class="ds-key">组间休息</text>
         </view>
         <view class="done-sep"></view>

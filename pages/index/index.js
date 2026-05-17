@@ -8,14 +8,6 @@ const VOICE_OPTS = [
   { label: '30s', value: 30 },
 ];
 
-const REST_OPTS = [
-  { label: '30s', value: 30 },
-  { label: '45s', value: 45 },
-  { label: '60s', value: 60 },
-  { label: '90s', value: 90 },
-  { label: '2min', value: 120 },
-  { label: '3min', value: 180 },
-];
 
 Page({
   data: {
@@ -26,8 +18,8 @@ Page({
     currentSet: 0,
     completedSets: 0,
     dots: [],
-    restOptions: REST_OPTS,
     restDuration: 60,
+    restLabel: '1分钟',
     // 休息倒计时
     restRemaining: 60,
     restDisplay: '01:00',
@@ -87,9 +79,9 @@ Page({
 
   // ── 设置 ──────────────────────────────────────────────────
 
-  pickRest(e) {
-    if (this.data.status !== 'idle') return;
-    this.setData({ restDuration: e.currentTarget.dataset.v });
+  onRestSlider(e) {
+    const v = e.detail.value;
+    this.setData({ restDuration: v, restLabel: this._fmtRest(v) });
   },
 
   addSet() {
@@ -385,6 +377,13 @@ Page({
 
   _fmt(s) {
     return `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  },
+
+  _fmtRest(s) {
+    if (s < 60) return `${s} 秒`;
+    const m = Math.floor(s / 60);
+    const r = s % 60;
+    return r > 0 ? `${m} 分 ${r} 秒` : `${m} 分钟`;
   },
 
   _save(completedSets) {

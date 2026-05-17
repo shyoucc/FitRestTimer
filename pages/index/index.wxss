@@ -100,11 +100,11 @@ page { background: #0D1117; }
 }
 
 .preview-time {
-  font-size: 88rpx;
+  font-size: 72rpx;
   font-weight: 800;
   color: #F1F5F9;
   line-height: 1;
-  letter-spacing: -3rpx;
+  letter-spacing: 1rpx;
   font-variant-numeric: tabular-nums;
 }
 
@@ -161,9 +161,31 @@ page { background: #0D1117; }
   color: #4A5568;
 }
 
-/* 时长选择 chips */
-.chips-scroll { overflow: hidden; }
-.chips { display: inline-flex; gap: 12rpx; }
+/* 休息时长滑块 */
+.slider-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.slider-marks {
+  display: flex;
+  gap: 16rpx;
+}
+
+.slider-mark {
+  font-size: 20rpx;
+  color: #4A5568;
+  font-weight: 500;
+}
+
+.rest-slider {
+  width: 100%;
+  margin: 4rpx 0 0;
+}
+
+/* 语音播报时长 chips（保留用于 voiceOptions） */
+.chips { display: inline-flex; gap: 12rpx; flex-wrap: wrap; }
 
 .chip {
   padding: 10rpx 24rpx;
