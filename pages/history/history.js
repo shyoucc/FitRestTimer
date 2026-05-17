@@ -47,6 +47,10 @@ Page({
     });
   },
 
+  goBack() {
+    wx.navigateBack();
+  },
+
   clearHistory() {
     wx.showModal({
       title: '清空记录',

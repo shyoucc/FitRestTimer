@@ -15,6 +15,25 @@ page { background: #0D1117; }
   margin-bottom: 32rpx;
 }
 
+.h-back {
+  width: 64rpx;
+  height: 64rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8rpx;
+  border-radius: 14rpx;
+  background: rgba(255,255,255,0.07);
+}
+.h-back:active { background: rgba(255,255,255,0.12); }
+
+.h-back-arrow {
+  font-size: 52rpx;
+  color: #94A3B8;
+  line-height: 1;
+  margin-top: -4rpx;
+}
+
 .h-bar-title {
   font-size: 32rpx;
   font-weight: 800;

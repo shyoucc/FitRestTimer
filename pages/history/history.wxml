@@ -5,6 +5,9 @@
 
   <!-- 自定义导航栏 -->
   <view class="h-bar" style="height: {{navBarH}}px">
+    <view class="h-back" bindtap="goBack">
+      <text class="h-back-arrow">‹</text>
+    </view>
     <text class="h-bar-title">训练记录</text>
   </view>
 
