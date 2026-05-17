@@ -74,9 +74,6 @@
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
-      <view class="icon-btn" bindtap="goHistory">
-        <text class="icon-hist">⋯</text>
-      </view>
     </view>
 
     <view class="work-center">
@@ -103,13 +100,8 @@
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
-      <view class="bar-right">
-        <view class="voice-toggle {{voiceOn ? 'voice-on' : ''}}" bindtap="toggleVoice">
-          <image src="/assets/icons/{{voiceOn ? 'voice_on' : 'voice_off'}}.png" class="voice-icon"/>
-        </view>
-        <view class="icon-btn" bindtap="goHistory">
-          <text class="icon-hist">⋯</text>
-        </view>
+      <view class="voice-toggle {{voiceOn ? 'voice-on' : ''}}" bindtap="toggleVoice">
+        <image src="/assets/icons/{{voiceOn ? 'voice_on' : 'voice_off'}}.png" class="voice-icon"/>
       </view>
     </view>
 
@@ -140,9 +132,6 @@
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
-      <view class="icon-btn" bindtap="goHistory">
-        <text class="icon-hist">⋯</text>
-      </view>
     </view>
 
     <view class="ring-center">
@@ -168,12 +157,7 @@
   <!-- ══ 全部完成 ══ -->
   <block wx:elif="{{status === 'done'}}">
 
-    <view class="bar">
-      <view class="spacer"></view>
-      <view class="icon-btn" bindtap="goHistory">
-        <text class="icon-hist">⋯</text>
-      </view>
-    </view>
+    <view class="bar"></view>
 
     <view class="done-center">
       <view class="done-badge">✓</view>
