@@ -1,6 +1,5 @@
 {
-  "navigationBarTitleText": "训练记录",
-  "navigationBarBackgroundColor": "#F5F6FA",
-  "navigationBarTextStyle": "black",
-  "backgroundColor": "#F5F6FA"
+  "navigationStyle": "custom",
+  "backgroundColor": "#0D1117",
+  "backgroundColorTop": "#0D1117"
 }

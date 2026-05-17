@@ -1,4 +1,5 @@
 {
-  "navigationBarTitleText": "组间计时",
-  "navigationStyle": "default"
+  "navigationStyle": "custom",
+  "backgroundColor": "#0D1117",
+  "backgroundColorTop": "#0D1117"
 }
