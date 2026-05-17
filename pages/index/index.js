@@ -23,6 +23,8 @@ Page({
     restDisplay: '01:00',
     restProgress: 1,
     warning: false,          // ≤10s 时变色提醒
+    // 语音开关
+    voiceOn: false,
     // 本组计时（正计时）
     setElapsed: 0,
     setDisplay: '00:00',
@@ -35,19 +37,31 @@ Page({
   _setTimer: null,
   _totalTimer: null,
   _startTime: null,
+  _audio: null,
 
   onLoad() {
     this._rebuildDots();
+    // 初始化音频实例（复用同一个，避免重复创建）
+    this._audio = wx.createInnerAudioContext();
+    this._audio.volume = 1;
+  },
+
+  onUnload() {
+    this._stopAll();
+    if (this._audio) { this._audio.destroy(); this._audio = null; }
+  },
+
+  toggleVoice() {
+    const next = !this.data.voiceOn;
+    this.setData({ voiceOn: next });
+    // 播一段示例音，告知用户当前状态
+    if (next) this._speak('go');
   },
 
   onReady() {
     const ratio = wx.getSystemInfoSync().windowWidth / 750;
     this._px = Math.round(500 * ratio);
     // 不在 idle 画 canvas，减少视觉噪音
-  },
-
-  onUnload() {
-    this._stopAll();
   },
 
   // ── 设置 ──────────────────────────────────────────────────
@@ -188,6 +202,7 @@ Page({
         this.setData({ restRemaining: 0, restDisplay: '00:00', restProgress: 0, warning: false });
         this._drawRing(0, 'resting', false);
         this._buzz();
+        if (this.data.voiceOn) this._speak('go');
         this._enterWorking();
         return;
       }
@@ -199,6 +214,8 @@ Page({
         warning: warn,
       });
       this._drawRing(rem / total, 'resting', warn);
+      // 最后 10 秒逐秒播报
+      if (this.data.voiceOn && rem <= 10) this._speak(rem);
       this._restTimer = setTimeout(tick, 1000);
     };
 
@@ -290,6 +307,13 @@ Page({
       return { idx, cls };
     });
     this.setData({ dots });
+  },
+
+  _speak(n) {
+    if (!this._audio) return;
+    this._audio.stop();
+    this._audio.src = `/audio/${n}.mp3`;
+    this._audio.play();
   },
 
   _stopRestTimer()  { clearTimeout(this._restTimer);  this._restTimer = null; },

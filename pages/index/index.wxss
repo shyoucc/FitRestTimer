@@ -59,6 +59,23 @@ page { background: #F5F6FA; }
   letter-spacing: -2rpx;
 }
 
+.bar-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.voice-toggle {
+  width: 64rpx; height: 64rpx;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.04);
+  font-size: 32rpx;
+}
+.voice-on {
+  background: rgba(249,112,102,0.1);
+}
+
 /* ══ 空闲：中心区 ════════════════════════════════════════ */
 .idle-center {
   flex: 1;
@@ -134,6 +151,16 @@ page { background: #F5F6FA; }
   color: #9CA3AF;
   letter-spacing: 1rpx;
   font-weight: 500;
+}
+
+.voice-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+.voice-sub {
+  font-size: 20rpx;
+  color: #C4C9D4;
 }
 
 /* 时长选择 chips */

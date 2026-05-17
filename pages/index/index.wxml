@@ -39,6 +39,14 @@
             <view class="step-btn" bindtap="addSet"><text>+</text></view>
           </view>
         </view>
+        <view class="card-divider"></view>
+        <view class="card-row card-row-h">
+          <view class="voice-label-group">
+            <text class="card-label">语音倒计时</text>
+            <text class="voice-sub">最后 10 秒播报</text>
+          </view>
+          <switch checked="{{voiceOn}}" bindchange="toggleVoice" color="#F97066" style="transform:scale(0.85)"/>
+        </view>
       </view>
 
       <!-- 开始按钮紧跟设置卡片 -->
@@ -84,8 +92,13 @@
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
-      <view class="icon-btn" bindtap="goHistory">
-        <text class="icon-hist">⋯</text>
+      <view class="bar-right">
+        <view class="voice-toggle {{voiceOn ? 'voice-on' : ''}}" bindtap="toggleVoice">
+          <text>{{voiceOn ? '🔊' : '🔇'}}</text>
+        </view>
+        <view class="icon-btn" bindtap="goHistory">
+          <text class="icon-hist">⋯</text>
+        </view>
       </view>
     </view>
 
