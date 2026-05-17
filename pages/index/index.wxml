@@ -29,11 +29,11 @@
           <view class="slider-hd">
             <text class="card-label">休息时长</text>
             <view class="slider-marks">
-              <text class="slider-mark">30秒</text>
-              <text class="slider-mark">5分钟</text>
+              <text class="slider-mark">10秒</text>
+              <text class="slider-mark">3分钟</text>
             </view>
           </view>
-          <slider min="30" max="300" step="15" value="{{restDuration}}"
+          <slider min="10" max="180" step="5" value="{{restDuration}}"
             activeColor="#FF4757" backgroundColor="#21262D" block-color="#FF4757"
             block-size="22"
             bindchanging="onRestSlider" bindchange="onRestSlider"
