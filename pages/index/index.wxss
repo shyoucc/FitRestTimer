@@ -70,10 +70,13 @@ page { background: #F5F6FA; }
   display: flex; align-items: center; justify-content: center;
   border-radius: 50%;
   background: rgba(0,0,0,0.04);
-  font-size: 32rpx;
 }
-.voice-on {
-  background: rgba(249,112,102,0.1);
+.voice-toggle:active { background: rgba(0,0,0,0.08); }
+.voice-on { background: rgba(249,112,102,0.1); }
+
+.voice-icon {
+  width: 40rpx;
+  height: 40rpx;
 }
 
 /* ══ 空闲：中心区 ════════════════════════════════════════ */
