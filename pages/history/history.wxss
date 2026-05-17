@@ -3,8 +3,24 @@ page { background: #0D1117; }
 .page {
   min-height: 100vh;
   background: #0D1117;
-  padding: 24rpx 40rpx calc(env(safe-area-inset-bottom) + 48rpx);
+  padding: 0 40rpx calc(env(safe-area-inset-bottom) + 48rpx);
   box-sizing: border-box;
+}
+
+/* 自定义导航栏 */
+.h-bar {
+  display: flex;
+  align-items: center;
+  padding: 0 4rpx;
+  margin-bottom: 32rpx;
+}
+
+.h-bar-title {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #F1F5F9;
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
 }
 
 /* 总览卡片 */

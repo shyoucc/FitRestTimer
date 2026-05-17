@@ -1,9 +1,12 @@
 <view class="page">
 
+  <!-- 状态栏占位 -->
+  <view style="height: {{statusBarH}}px; flex-shrink: 0;"></view>
+
   <!-- ══ 空闲 ══ -->
   <block wx:if="{{status === 'idle'}}">
 
-    <view class="bar">
+    <view class="bar" style="height: {{navBarH}}px">
       <text class="bar-title">组间计时</text>
       <view class="icon-btn" bindtap="goHistory">
         <text class="icon-hist">⋯</text>
@@ -45,7 +48,7 @@
             <text class="card-label">语音倒计时</text>
             <text class="voice-sub">最后 {{voiceCountdown}}s 逐秒播报</text>
           </view>
-          <switch checked="{{voiceOn}}" bindchange="toggleVoice" color="#F97066" style="transform:scale(0.85)"/>
+          <switch checked="{{voiceOn}}" bindchange="toggleVoice" color="#FF4757" style="transform:scale(0.85)"/>
         </view>
         <block wx:if="{{voiceOn}}">
           <view class="card-divider"></view>
@@ -60,7 +63,7 @@
         </block>
       </view>
 
-      <!-- 开始按钮紧跟设置卡片 -->
+      <!-- 开始按钮 -->
       <view class="btn-primary btn-start" bindtap="start">开始训练</view>
 
     </view>
@@ -70,7 +73,7 @@
   <!-- ══ 训练中 ══ -->
   <block wx:elif="{{status === 'working'}}">
 
-    <view class="bar">
+    <view class="bar" style="height: {{navBarH}}px">
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
@@ -96,7 +99,7 @@
   <!-- ══ 休息中 ══ -->
   <block wx:elif="{{status === 'resting'}}">
 
-    <view class="bar">
+    <view class="bar" style="height: {{navBarH}}px">
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
@@ -128,7 +131,7 @@
   <!-- ══ 已暂停 ══ -->
   <block wx:elif="{{status === 'paused'}}">
 
-    <view class="bar">
+    <view class="bar" style="height: {{navBarH}}px">
       <view class="dots">
         <view wx:for="{{dots}}" wx:key="idx" class="{{item.cls}}"></view>
       </view>
@@ -138,7 +141,7 @@
       <view class="ring-wrap">
         <canvas canvas-id="ring" class="ring-canvas"></canvas>
         <view class="ring-inner">
-          <text class="ring-time" style="color:#C4C9D4">{{restDisplay}}</text>
+          <text class="ring-time" style="color:#2D3748">{{restDisplay}}</text>
           <text class="ring-label">已暂停</text>
         </view>
       </view>
@@ -157,7 +160,7 @@
   <!-- ══ 全部完成 ══ -->
   <block wx:elif="{{status === 'done'}}">
 
-    <view class="bar"></view>
+    <view class="bar" style="height: {{navBarH}}px"></view>
 
     <view class="done-center">
       <view class="done-badge">✓</view>

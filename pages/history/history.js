@@ -2,10 +2,21 @@ const app = getApp();
 
 Page({
   data: {
+    statusBarH: 0,
+    navBarH: 44,
     history: [],
     totalWorkouts: 0,
     totalSetsAll: 0,
     totalMinutes: 0,
+  },
+
+  onLoad() {
+    const { statusBarHeight } = wx.getSystemInfoSync();
+    const btn = wx.getMenuButtonBoundingClientRect();
+    this.setData({
+      statusBarH: statusBarHeight,
+      navBarH: btn.bottom - statusBarHeight + 8,
+    });
   },
 
   onShow() {

@@ -19,6 +19,8 @@ const REST_OPTS = [
 
 Page({
   data: {
+    statusBarH: 0,
+    navBarH: 44,
     status: 'idle',          // idle | working | resting | paused | done
     totalSets: 4,
     currentSet: 0,
@@ -51,8 +53,13 @@ Page({
   _audio: null,
 
   onLoad() {
+    const { statusBarHeight } = wx.getSystemInfoSync();
+    const btn = wx.getMenuButtonBoundingClientRect();
+    this.setData({
+      statusBarH: statusBarHeight,
+      navBarH: btn.bottom - statusBarHeight + 8,
+    });
     this._rebuildDots();
-    // 初始化音频实例（复用同一个，避免重复创建）
     this._audio = wx.createInnerAudioContext();
     this._audio.volume = 1;
   },

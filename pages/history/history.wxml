@@ -1,5 +1,13 @@
 <view class="page">
 
+  <!-- 状态栏占位 -->
+  <view style="height: {{statusBarH}}px; flex-shrink: 0;"></view>
+
+  <!-- 自定义导航栏 -->
+  <view class="h-bar" style="height: {{navBarH}}px">
+    <text class="h-bar-title">训练记录</text>
+  </view>
+
   <!-- 总览卡片 -->
   <view class="summary-card" wx:if="{{history.length > 0}}">
     <view class="summary-item">
@@ -43,10 +51,6 @@
         <view class="r-stat">
           <text class="r-stat-num">{{item.completedSets}}/{{item.totalSets}}</text>
           <text class="r-stat-label">完成组数</text>
-        </view>
-        <view class="r-stat">
-          <text class="r-stat-num">{{item.workDuration || '--'}}s</text>
-          <text class="r-stat-label">每组时长</text>
         </view>
         <view class="r-stat">
           <text class="r-stat-num">{{item.restDuration}}s</text>
