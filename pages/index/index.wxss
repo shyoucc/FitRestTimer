@@ -1,12 +1,12 @@
 /* ══ 基础 ════════════════════════════════════════════════ */
-page { background: #F5F6FA; }
+page { background: #0D1117; }
 
 .page {
   height: 100vh;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  background: #F5F6FA;
+  background: #0D1117;
   box-sizing: border-box;
   padding: 0 40rpx calc(env(safe-area-inset-bottom) + 24rpx);
 }
@@ -21,10 +21,11 @@ page { background: #F5F6FA; }
 
 .bar-title {
   flex: 1;
-  font-size: 34rpx;
-  font-weight: 700;
-  color: #111827;
-  letter-spacing: 1rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #F1F5F9;
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
 }
 
 .spacer { flex: 1; }
@@ -39,23 +40,23 @@ page { background: #F5F6FA; }
 
 .dot {
   width: 16rpx; height: 16rpx;
-  border-radius: 50%;
-  background: #DDE1EC;
+  border-radius: 4rpx;
+  background: #2D3748;
 }
-.dot-done  { background: #10B981; }
-.dot-work  { background: #10B981; box-shadow: 0 0 0 4rpx rgba(16,185,129,.18); }
-.dot-rest  { background: #F97066; box-shadow: 0 0 0 4rpx rgba(249,112,102,.18); }
-.dot-pause { background: #CBD5E1; }
+.dot-done  { background: #2ED573; }
+.dot-work  { background: #2ED573; box-shadow: 0 0 0 4rpx rgba(46,213,115,.22); }
+.dot-rest  { background: #FF4757; box-shadow: 0 0 0 4rpx rgba(255,71,87,.22); }
+.dot-pause { background: #4A5568; }
 
 .icon-btn {
   width: 64rpx; height: 64rpx;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.04);
+  border-radius: 14rpx;
+  background: rgba(255,255,255,0.07);
 }
 .icon-hist {
   font-size: 30rpx;
-  color: #9CA3AF;
+  color: #64748B;
   letter-spacing: -2rpx;
 }
 
@@ -68,11 +69,11 @@ page { background: #F5F6FA; }
 .voice-toggle {
   width: 64rpx; height: 64rpx;
   display: flex; align-items: center; justify-content: center;
-  border-radius: 50%;
-  background: rgba(0,0,0,0.04);
+  border-radius: 14rpx;
+  background: rgba(255,255,255,0.07);
 }
-.voice-toggle:active { background: rgba(0,0,0,0.08); }
-.voice-on { background: rgba(249,112,102,0.1); }
+.voice-toggle:active { background: rgba(255,255,255,0.12); }
+.voice-on { background: rgba(255,71,87,0.15); }
 
 .voice-icon {
   width: 40rpx;
@@ -90,44 +91,37 @@ page { background: #F5F6FA; }
   padding-bottom: calc(env(safe-area-inset-bottom) + 16rpx);
 }
 
-.btn-start {
-  width: 100%;
-  box-sizing: border-box;
-  height: 96rpx !important;
-  font-size: 30rpx !important;
-  border-radius: 24rpx !important;
-  box-shadow: 0 6rpx 16rpx rgba(249,112,102,0.28) !important;
-}
-
 /* 大字预览 */
 .preview-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8rpx;
+  gap: 10rpx;
 }
 
 .preview-time {
-  font-size: 80rpx;
+  font-size: 88rpx;
   font-weight: 800;
-  color: #111827;
+  color: #F1F5F9;
   line-height: 1;
-  letter-spacing: -2rpx;
+  letter-spacing: -3rpx;
   font-variant-numeric: tabular-nums;
 }
 
 .preview-label {
-  font-size: 22rpx;
-  color: #9CA3AF;
-  letter-spacing: 2rpx;
+  font-size: 20rpx;
+  color: #4A5568;
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 
 /* 设置卡片 */
 .card {
-  background: #FFFFFF;
-  border-radius: 20rpx;
+  background: #161B22;
+  border-radius: 16rpx;
   overflow: hidden;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  border: 1rpx solid #21262D;
 }
 
 .card-row {
@@ -145,15 +139,16 @@ page { background: #F5F6FA; }
 
 .card-divider {
   height: 1rpx;
-  background: #F3F4F6;
+  background: #21262D;
   margin: 0 28rpx;
 }
 
 .card-label {
-  font-size: 22rpx;
-  color: #9CA3AF;
-  letter-spacing: 1rpx;
-  font-weight: 500;
+  font-size: 20rpx;
+  color: #64748B;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .voice-label-group {
@@ -163,7 +158,7 @@ page { background: #F5F6FA; }
 }
 .voice-sub {
   font-size: 20rpx;
-  color: #C4C9D4;
+  color: #4A5568;
 }
 
 /* 时长选择 chips */
@@ -172,17 +167,17 @@ page { background: #F5F6FA; }
 
 .chip {
   padding: 10rpx 24rpx;
-  border-radius: 40rpx;
+  border-radius: 8rpx;
   font-size: 26rpx;
-  font-weight: 500;
-  color: #9CA3AF;
-  background: #F3F4F6;
+  font-weight: 600;
+  color: #64748B;
+  background: #21262D;
   white-space: nowrap;
 }
 .chip-on {
-  background: #FEE2E2;
-  color: #F97066;
-  font-weight: 600;
+  background: rgba(255,71,87,0.15);
+  color: #FF4757;
+  font-weight: 700;
 }
 
 /* 组数步进器 */
@@ -190,18 +185,18 @@ page { background: #F5F6FA; }
 
 .step-btn {
   width: 64rpx; height: 64rpx;
-  border-radius: 50%;
-  background: #F3F4F6;
+  border-radius: 12rpx;
+  background: #21262D;
   display: flex; align-items: center; justify-content: center;
   font-size: 36rpx;
-  color: #6B7280;
+  color: #94A3B8;
 }
-.step-btn:active { background: #E5E7EB; }
+.step-btn:active { background: #2D3748; }
 
 .step-val {
   font-size: 44rpx;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 800;
+  color: #F1F5F9;
   min-width: 56rpx;
   text-align: center;
   font-variant-numeric: tabular-nums;
@@ -219,16 +214,19 @@ page { background: #F5F6FA; }
 }
 
 .set-index {
-  font-size: 52rpx;
-  font-weight: 700;
-  color: #111827;
+  font-size: 56rpx;
+  font-weight: 800;
+  color: #F1F5F9;
   letter-spacing: 2rpx;
 }
 
 .set-total {
-  font-size: 26rpx;
-  color: #9CA3AF;
+  font-size: 24rpx;
+  color: #4A5568;
   margin-top: 8rpx;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .elapsed-row {
@@ -236,29 +234,32 @@ page { background: #F5F6FA; }
   align-items: baseline;
   gap: 12rpx;
   margin-top: 48rpx;
-  padding: 24rpx 48rpx;
-  background: #FFFFFF;
-  border-radius: 20rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  padding: 28rpx 56rpx;
+  background: #161B22;
+  border-radius: 16rpx;
+  border: 1rpx solid #21262D;
 }
 
 .elapsed-num {
-  font-size: 64rpx;
-  font-weight: 700;
-  color: #111827;
+  font-size: 72rpx;
+  font-weight: 800;
+  color: #2ED573;
   font-variant-numeric: tabular-nums;
-  letter-spacing: 2rpx;
+  letter-spacing: 1rpx;
 }
 
 .elapsed-unit {
-  font-size: 24rpx;
-  color: #9CA3AF;
+  font-size: 22rpx;
+  color: #4A5568;
+  font-weight: 600;
+  letter-spacing: 1rpx;
 }
 
 .work-hint {
   font-size: 22rpx;
-  color: #C4C9D4;
+  color: #4A5568;
   margin-top: 32rpx;
+  letter-spacing: 1rpx;
 }
 
 /* ══ 休息 / 暂停：圆环 ══════════════════════════════════ */
@@ -305,14 +306,17 @@ page { background: #F5F6FA; }
 }
 
 .ring-label {
-  font-size: 22rpx;
-  color: #9CA3AF;
-  letter-spacing: 3rpx;
+  font-size: 20rpx;
+  color: #4A5568;
+  letter-spacing: 4rpx;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .ring-note {
   font-size: 24rpx;
-  color: #9CA3AF;
+  color: #4A5568;
+  letter-spacing: 1rpx;
 }
 
 /* ══ 完成界面 ════════════════════════════════════════════ */
@@ -329,34 +333,36 @@ page { background: #F5F6FA; }
 .done-badge {
   width: 100rpx;
   height: 100rpx;
-  border-radius: 50%;
-  background: #D1FAE5;
+  border-radius: 28rpx;
+  background: rgba(46,213,115,0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 48rpx;
-  color: #10B981;
+  color: #2ED573;
   margin-bottom: 8rpx;
 }
 
 .done-title {
   font-size: 44rpx;
-  font-weight: 700;
-  color: #111827;
-  letter-spacing: 2rpx;
+  font-weight: 800;
+  color: #F1F5F9;
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
 }
 
 .done-sub {
-  font-size: 26rpx;
-  color: #9CA3AF;
+  font-size: 24rpx;
+  color: #4A5568;
+  letter-spacing: 1rpx;
 }
 
 .done-card {
   display: flex;
   align-items: center;
-  background: #FFFFFF;
-  border-radius: 20rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.06);
+  background: #161B22;
+  border-radius: 16rpx;
+  border: 1rpx solid #21262D;
   padding: 32rpx 0;
   width: 100%;
   margin-top: 16rpx;
@@ -372,20 +378,23 @@ page { background: #F5F6FA; }
 
 .ds-val {
   font-size: 36rpx;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 800;
+  color: #F1F5F9;
   font-variant-numeric: tabular-nums;
 }
 
 .ds-key {
-  font-size: 20rpx;
-  color: #9CA3AF;
+  font-size: 18rpx;
+  color: #4A5568;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .done-sep {
   width: 1rpx;
   height: 48rpx;
-  background: #F3F4F6;
+  background: #21262D;
 }
 
 /* ══ 底部按钮区 ══════════════════════════════════════════ */
@@ -404,51 +413,52 @@ page { background: #F5F6FA; }
   width: 100%;
 }
 
-/* 主按钮（全宽场景：完成本组、继续等） */
+/* 主按钮 */
 .btn-primary {
   flex: 1;
   height: 104rpx;
-  border-radius: 26rpx;
-  background: #F97066;
+  border-radius: 16rpx;
+  background: #FF4757;
   display: flex; align-items: center; justify-content: center;
-  font-size: 30rpx;
-  font-weight: 700;
+  font-size: 28rpx;
+  font-weight: 800;
   color: #FFFFFF;
-  letter-spacing: 2rpx;
-  box-shadow: 0 6rpx 18rpx rgba(249,112,102,0.28);
+  letter-spacing: 3rpx;
+  text-transform: uppercase;
 }
-.btn-primary:active { opacity: 0.88; transform: scale(0.985); }
+.btn-primary:active { opacity: 0.85; transform: scale(0.985); }
 
 .btn-green {
-  background: #10B981;
-  box-shadow: 0 6rpx 18rpx rgba(16,185,129,0.24);
+  background: #2ED573;
+  color: #0D1117;
 }
 
 .btn-full { width: 100%; flex: none; }
 
-/* 开始训练：居中、自适应宽度 */
+/* 开始训练 */
 .btn-start {
   flex: none;
   width: auto;
   height: 92rpx !important;
   padding: 0 72rpx;
-  border-radius: 46rpx !important;
-  font-size: 30rpx !important;
-  font-weight: 700;
-  box-shadow: 0 6rpx 18rpx rgba(249,112,102,0.28) !important;
+  border-radius: 16rpx !important;
+  font-size: 28rpx !important;
+  font-weight: 800;
+  letter-spacing: 3rpx;
   align-self: center;
 }
 
-/* 次按钮 - 浅底彩色字 */
+/* 次按钮 */
 .btn-secondary {
   flex: 1;
   height: 104rpx;
-  border-radius: 26rpx;
-  background: #FEE2E2;
+  border-radius: 16rpx;
+  background: rgba(255,71,87,0.12);
   display: flex; align-items: center; justify-content: center;
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #F97066;
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #FF4757;
+  letter-spacing: 2rpx;
 }
 .btn-secondary:active { opacity: 0.8; }
 
@@ -456,20 +466,20 @@ page { background: #F5F6FA; }
 .btn-outline {
   flex: 1;
   height: 104rpx;
-  border-radius: 26rpx;
-  background: #FFFFFF;
-  border: 1.5rpx solid #E5E7EB;
+  border-radius: 16rpx;
+  background: transparent;
+  border: 1.5rpx solid #2D3748;
   display: flex; align-items: center; justify-content: center;
-  font-size: 28rpx;
-  font-weight: 600;
-  color: #6B7280;
-  box-shadow: 0 2rpx 6rpx rgba(0,0,0,0.04);
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #64748B;
+  letter-spacing: 2rpx;
 }
-.btn-outline:active { background: #F9FAFB; }
+.btn-outline:active { background: #161B22; }
 
 .btn-outline-red {
-  color: #F87171;
-  border-color: #FECACA;
+  color: #FF4757;
+  border-color: rgba(255,71,87,0.3);
 }
 
 /* 纯文字按钮 */
@@ -477,5 +487,6 @@ page { background: #F5F6FA; }
   height: 72rpx;
   display: flex; align-items: center; justify-content: center;
   font-size: 24rpx;
-  color: #C4C9D4;
+  color: #2D3748;
+  letter-spacing: 1rpx;
 }

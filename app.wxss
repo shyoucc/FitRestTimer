@@ -1,12 +1,12 @@
 page {
-  background-color: #1a1a2e;
-  color: #ffffff;
+  background-color: #0D1117;
+  color: #F1F5F9;
   font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
 }
 
 .container {
   min-height: 100vh;
-  background-color: #1a1a2e;
+  background-color: #0D1117;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -31,7 +31,7 @@ Page({
     restDisplay: '01:00',
     restProgress: 1,
     warning: false,          // ≤voiceCountdown 时变色提醒
-    ringColor: '#10B981',    // 圆环+数字同步颜色
+    ringColor: '#2ED573',    // 圆环+数字同步颜色
     // 语音开关
     voiceOn: false,
     voiceCountdown: 10,
@@ -277,14 +277,14 @@ Page({
     // 背景轨道
     ctx.beginPath();
     ctx.arc(c, c, r, 0, Math.PI * 2);
-    ctx.setStrokeStyle('#EEF0F5');
+    ctx.setStrokeStyle('#1E2531');
     ctx.setLineWidth(lw);
     ctx.stroke();
 
     if (progress > 0.005) {
       let color;
       if (status === 'paused') {
-        color = '#DDE1EC';
+        color = '#2D3748';
       } else {
         // 绿(1.0) → 橙(0.5) → 红(0.0) 线性插值
         color = this._progressColor(progress);
@@ -315,20 +315,20 @@ Page({
   // 绿(progress=1) → 橙(0.5) → 红(0)
   _progressColor(p) {
     const lerp = (a, b, t) => Math.round(a + (b - a) * t);
-    // green: #10B981 = [16,185,129]
-    // amber: #F59E0B = [245,158,11]
-    // red:   #F97066 = [249,112,102]
+    // green: #2ED573 = [46,213,115]
+    // amber: #FFA502 = [255,165,2]
+    // red:   #FF4757 = [255,71,87]
     let r, g, b;
     if (p >= 0.5) {
       const t = (1 - p) / 0.5;   // 0→1 as progress goes 1.0→0.5
-      r = lerp(16,  245, t);
-      g = lerp(185, 158, t);
-      b = lerp(129,  11, t);
+      r = lerp(46,  255, t);
+      g = lerp(213, 165, t);
+      b = lerp(115,   2, t);
     } else {
       const t = (0.5 - p) / 0.5; // 0→1 as progress goes 0.5→0
-      r = lerp(245, 249, t);
-      g = lerp(158, 112, t);
-      b = lerp(11,  102, t);
+      r = lerp(255, 255, t);
+      g = lerp(165,  71, t);
+      b = lerp(2,    87, t);
     }
     return `rgb(${r},${g},${b})`;
   },

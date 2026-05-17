@@ -1,17 +1,17 @@
-page { background: #F5F6FA; }
+page { background: #0D1117; }
 
 .page {
   min-height: 100vh;
-  background: #F5F6FA;
+  background: #0D1117;
   padding: 24rpx 40rpx calc(env(safe-area-inset-bottom) + 48rpx);
   box-sizing: border-box;
 }
 
 /* 总览卡片 */
 .summary-card {
-  background: #FFFFFF;
-  border-radius: 24rpx;
-  box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.06);
+  background: #161B22;
+  border-radius: 16rpx;
+  border: 1rpx solid #21262D;
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -28,20 +28,23 @@ page { background: #F5F6FA; }
 
 .summary-num {
   font-size: 52rpx;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 800;
+  color: #F1F5F9;
   font-variant-numeric: tabular-nums;
 }
 
 .summary-desc {
-  font-size: 22rpx;
-  color: #9CA3AF;
+  font-size: 20rpx;
+  color: #4A5568;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 .summary-divider {
   width: 1rpx;
   height: 52rpx;
-  background: #F3F4F6;
+  background: #21262D;
 }
 
 /* 空状态 */
@@ -54,14 +57,16 @@ page { background: #F5F6FA; }
 }
 
 .empty-icon { font-size: 80rpx; }
-.empty-text { font-size: 32rpx; color: #C4C9D4; font-weight: 600; }
-.empty-sub  { font-size: 24rpx; color: #DDE1EC; }
+.empty-text { font-size: 32rpx; color: #2D3748; font-weight: 700; letter-spacing: 2rpx; text-transform: uppercase; }
+.empty-sub  { font-size: 24rpx; color: #21262D; }
 
 /* 列表标题 */
 .section-title {
-  font-size: 22rpx;
-  color: #9CA3AF;
-  letter-spacing: 2rpx;
+  font-size: 20rpx;
+  color: #4A5568;
+  letter-spacing: 3rpx;
+  font-weight: 600;
+  text-transform: uppercase;
   margin-bottom: 16rpx;
 }
 
@@ -69,9 +74,9 @@ page { background: #F5F6FA; }
 .record-list { display: flex; flex-direction: column; gap: 16rpx; }
 
 .record-card {
-  background: #FFFFFF;
-  border-radius: 20rpx;
-  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+  background: #161B22;
+  border-radius: 16rpx;
+  border: 1rpx solid #21262D;
   padding: 28rpx 32rpx;
 }
 
@@ -84,33 +89,35 @@ page { background: #F5F6FA; }
 
 .record-date {
   font-size: 28rpx;
-  font-weight: 600;
-  color: #111827;
+  font-weight: 700;
+  color: #F1F5F9;
   display: block;
 }
 
 .record-time {
   font-size: 22rpx;
-  color: #9CA3AF;
+  color: #4A5568;
   display: block;
   margin-top: 4rpx;
 }
 
 .record-badge {
   padding: 6rpx 20rpx;
-  border-radius: 40rpx;
-  font-size: 20rpx;
-  font-weight: 600;
+  border-radius: 8rpx;
+  font-size: 18rpx;
+  font-weight: 700;
+  letter-spacing: 1rpx;
+  text-transform: uppercase;
 }
 
 .badge-complete {
-  background: #D1FAE5;
-  color: #10B981;
+  background: rgba(46,213,115,0.12);
+  color: #2ED573;
 }
 
 .badge-partial {
-  background: #FEF3C7;
-  color: #F59E0B;
+  background: rgba(255,165,2,0.12);
+  color: #FFA502;
 }
 
 .record-stats {
@@ -120,20 +127,20 @@ page { background: #F5F6FA; }
 }
 
 .r-stat { display: flex; flex-direction: column; align-items: center; gap: 6rpx; }
-.r-stat-num   { font-size: 32rpx; font-weight: 700; color: #111827; font-variant-numeric: tabular-nums; }
-.r-stat-label { font-size: 20rpx; color: #9CA3AF; }
+.r-stat-num   { font-size: 32rpx; font-weight: 800; color: #F1F5F9; font-variant-numeric: tabular-nums; }
+.r-stat-label { font-size: 18rpx; color: #4A5568; letter-spacing: 1rpx; font-weight: 600; text-transform: uppercase; }
 
 /* 进度条 */
 .progress-bar-bg {
   height: 6rpx;
-  background: #F3F4F6;
+  background: #21262D;
   border-radius: 3rpx;
   overflow: hidden;
 }
 
 .progress-bar-fill {
   height: 100%;
-  background: #F97066;
+  background: #FF4757;
   border-radius: 3rpx;
 }
 
@@ -142,10 +149,11 @@ page { background: #F5F6FA; }
   margin-top: 48rpx;
   text-align: center;
   padding: 24rpx;
-  font-size: 26rpx;
-  color: #C4C9D4;
-  border: 1rpx dashed #E5E7EB;
-  border-radius: 16rpx;
+  font-size: 24rpx;
+  color: #2D3748;
+  border: 1rpx dashed #21262D;
+  border-radius: 12rpx;
+  letter-spacing: 2rpx;
 }
 
-.clear-btn:active { color: #F97066; border-color: #FECACA; }
+.clear-btn:active { color: #FF4757; border-color: rgba(255,71,87,0.3); }
